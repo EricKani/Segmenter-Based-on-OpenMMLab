@@ -23,24 +23,7 @@ model = dict(
         act_cfg=dict(type='GELU'),
         norm_eval=False,
         interpolate_mode='bicubic'),
-    decode_head=dict(# todo
-        type='MySegmenterHead',
-        d_encoder=768,
-        n_layers=2,
-        n_heads=12,
-        d_model=768,
-        d_ff=4*768,
-        drop_path_rate=0.0,
-        dropout=0.1,
-        in_channels=256,
-        channels=512,
-        in_index=0,
-        dropout_ratio=0, # no relation
-        num_classes=150,
-        norm_cfg=norm_cfg,
-        align_corners=False,
-        loss_decode=dict(
-            type='CrossEntropyLoss', use_sigmoid=False, loss_weight=1.0)),
+
 
     train_cfg=dict(),
     test_cfg=dict(mode='whole'))

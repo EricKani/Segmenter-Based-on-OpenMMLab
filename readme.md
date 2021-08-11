@@ -14,7 +14,7 @@ The passwds of download links are all 'nopw'
     <th>Exp</th>
     <th>Name</th>
     <th>backbone</th>
-    <th>mIoU </th>
+    <th>mIoU-SS </th>
     <th>Resolution</th>
     <th>BS</th>
     <th colspan="3">Download</th>
@@ -23,12 +23,12 @@ The passwds of download links are all 'nopw'
     <td>4th line in Table3</td>
     <td>Seg-B<span>&#8224;</span>-Linear/16</td>
     <td>Deit</td>
-    <td> 45.14+ </td>
+    <td> 46.69 </td>
     <td>512x512</td>
     <td>8</td>
-    <td><a href="https://pan.baidu.com/s/1nUdzq_Gw2IkSvbuIRIkOIA">model</a></td>
-    <td><a href="https://pan.baidu.com/s/1w8l8YhfZcbMV8KJUUVKRXg">config</a></td>    
-    <td><a href="https://pan.baidu.com/s/1Qq7mYMgMuVLSmsgHLpnsHg">log</a></td>
+    <td><a href="https://pan.baidu.com/s/1M5oNIAjeiKjM22FydEUlMg">model</a></td>
+    <td><a href="https://drive.google.com/file/d/17e-_fA8GnvZ-fJJVferKfzwG296lXYIp/view?usp=sharing">config</a></td>    
+    <td><a href="https://drive.google.com/file/d/1wLjCIyG8gP5OUC0vImRVmOtxdm6kmZ-W/view?usp=sharing">log</a></td>
 </tr>
 <tr>
     <td>4th line in Table6</td>

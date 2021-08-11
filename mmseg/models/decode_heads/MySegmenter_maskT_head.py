@@ -1,15 +1,11 @@
-import torch
 import torch.nn as nn
-from mmcv.cnn import ConvModule
 
-from mmseg.ops import Upsample
 from ..builder import HEADS
 from .decode_head import BaseDecodeHead
 
 import torch
-import warnings
-import math
 from einops import rearrange
+from mmcv.cnn.bricks.drop import DropPath
 from .MySegmenter_linear_head import init_weights, trunc_normal_
 
 
@@ -52,6 +48,8 @@ class Attention(nn.Module):
         x = self.proj_drop(x)
 
         return x
+
+
 class FeedForward(nn.Module):
     def __init__(self, dim, hidden_dim, dropout, out_dim=None):
         super().__init__()
@@ -74,35 +72,6 @@ class FeedForward(nn.Module):
         x = self.drop(x)
         return x
 
-def drop_path(x, drop_prob: float = 0., training: bool = False):
-    """Drop paths (Stochastic Depth) per sample (when applied in main path of residual blocks).
-
-    This is the same as the DropConnect impl I created for EfficientNet, etc networks, however,
-    the original name is misleading as 'Drop Connect' is a different form of dropout in a separate paper...
-    See discussion: https://github.com/tensorflow/tpu/issues/494#issuecomment-532968956 ... I've opted for
-    changing the layer and argument names to 'drop path' rather than mix DropConnect as a layer name and use
-    'survival rate' as the argument.
-
-    """
-    if drop_prob == 0. or not training:
-        return x
-    keep_prob = 1 - drop_prob
-    shape = (x.shape[0],) + (1,) * (x.ndim - 1)  # work with diff dim tensors, not just 2D ConvNets
-    random_tensor = keep_prob + torch.rand(shape, dtype=x.dtype, device=x.device)
-    random_tensor.floor_()  # binarize
-    output = x.div(keep_prob) * random_tensor
-    return output
-
-
-class DropPath(nn.Module):
-    """Drop paths (Stochastic Depth) per sample  (when applied in main path of residual blocks).
-    """
-    def __init__(self, drop_prob=None):
-        super(DropPath, self).__init__()
-        self.drop_prob = drop_prob
-
-    def forward(self, x):
-        return drop_path(x, self.drop_prob, self.training)
 
 class Block(nn.Module):
     def __init__(self, dim, heads, mlp_dim, dropout, drop_path):
@@ -118,12 +87,12 @@ class Block(nn.Module):
         x = x + self.drop_path(self.mlp(self.norm2(x)))
         return x
 
+
 @HEADS.register_module()
-class MySegmenterHead_maskT(BaseDecodeHead):#todo
+class MySegmenterHead_maskT(BaseDecodeHead):
     def __init__(self, d_encoder, n_layers, n_heads, d_model, d_ff, drop_path_rate, dropout, **kwargs):
         super(MySegmenterHead_maskT, self).__init__(input_transform=None, **kwargs)
         self.d_encoder = d_encoder
-        # self.patch_size = patch_size
         self.d_model = d_model
         self.d_ff = d_ff
         self.scale = d_model ** -0.5
@@ -142,17 +111,14 @@ class MySegmenterHead_maskT(BaseDecodeHead):#todo
         self.decoder_norm = nn.LayerNorm(d_model)
         self.mask_norm = nn.LayerNorm(self.num_classes)
 
-
         self.apply(init_weights)
         trunc_normal_(self.cls_emb, std=0.02)
-        # self.conv_seg = nn.Conv2d(self.num_classes, self.num_classes, kernel_size=1)
-        # del self.conv_seg
+
     def forward(self, inputs):
         x = self._transform_inputs(inputs)
-        GS = x.shape[-1]; #print('x.shape in head in: ', x.shape)
+        GS = x.shape[-1]
 
         x = rearrange(x, "b n h w -> b (h w) n")
-        # print('x.shape in head reannage: ', x.shape)
 
         x = self.proj_dec(x)
         cls_emb = self.cls_emb.expand(x.size(0), -1, -1)
@@ -171,6 +137,6 @@ class MySegmenterHead_maskT(BaseDecodeHead):#todo
         masks = patches @ cls_seg_feat.transpose(1, 2)
         masks = self.mask_norm(masks)
         masks = rearrange(masks, "b (h w) n -> b n h w", h=int(GS))
-        # print('masks.shape: ', masks.shape)
+
         return masks
 

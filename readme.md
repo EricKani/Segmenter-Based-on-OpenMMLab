@@ -17,7 +17,7 @@ based on [official open-sourced code](https://github.com/rstrudel/segmenter).
 
 - mmsegmentation=0.16.0
 
-**Note:** You should install `pytorch` with a version higher than `1.7`, because the pretrained model of `Deit` is saved via 1.7+ 
+**Note:** You should install `pytorch` with a version higher than `1.7`, because the pretrained model of `DeiT` is saved via 1.7+ 
 `pytorch`. Otherwise you may encounter some errors while loading the `state_dict`.
 
 ## Results on ADE20K
@@ -37,7 +37,7 @@ The passwds of download links are all 'nopw'.
 <tr>
     <td>4th line in Table3</td>
     <td>Seg-B<span>&#8224;</span>-Linear/16</td>
-    <td>Deit</td>
+    <td>DeiT-B</td>
     <td> 46.69 </td>
     <td> 47.10 </td>
     <td>512x512</td>
@@ -49,7 +49,7 @@ The passwds of download links are all 'nopw'.
 <tr>
     <td>4th line in Table6</td>
     <td>Seg-B<span>&#8224;</span>-Mask/16</td>
-    <td>Deit</td>
+    <td>DeiT-B</td>
     <td> 48.41 </td>
     <td> 47.67 </td>
     <td>512x512</td>
@@ -57,5 +57,17 @@ The passwds of download links are all 'nopw'.
     <td><a href="https://pan.baidu.com/s/1Rs6xDy2R5YAu5cSsPd2abA">model</a></td>
     <td><a href="https://drive.google.com/file/d/1SDWrkzjvZiwRQLDdgdvEAL30qYsOAbYP/view?usp=sharing">config</a></td>
     <td><a href="https://drive.google.com/file/d/1iPSTNzMsumptvfCUBd2X4yUDNc-yFqM1/view?usp=sharing">log</a></td>
+</tr>
+<tr>
+    <td>6th line in Table3</td>
+    <td>Seg-B  -Linear/16</td>
+    <td>ViT-B</td>
+    <td> 45.70 </td>
+    <td> 45.69 </td>
+    <td>512x512</td>
+    <td>8</td>
+    <td><a href="https://pan.baidu.com/s/1h9GkvOTLtdiq0eGjviSPng">model</a></td>
+    <td><a href="https://drive.google.com/file/d/19TxRXUqd88MJcufet3Si7ulHEmcD566m/view?usp=sharing">config</a></td>
+    <td><a href="https://drive.google.com/file/d/1ik3o7156_4301uihUkvHzrJpRBJc_dXo/view?usp=sharing">log</a></td>
 </tr>
 </table>

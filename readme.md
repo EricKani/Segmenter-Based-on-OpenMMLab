@@ -38,13 +38,13 @@ The passwds of download links are all 'nopw'.
     <td>4th line in Table3</td>
     <td>Seg-B<span>&#8224;</span>-Linear/16</td>
     <td>DeiT-B</td>
-    <td> 46.69 </td>
+    <td> 46.83 </td>
     <td> 47.10 </td>
     <td>512x512</td>
     <td>8</td>
-    <td><a href="https://pan.baidu.com/s/1M5oNIAjeiKjM22FydEUlMg">model</a></td>
-    <td><a href="https://drive.google.com/file/d/1Mt3vxst6_fBi_iaJxfXKOh4bO2fI4b9r/view?usp=sharing">config</a></td>    
-    <td><a href="https://drive.google.com/file/d/1wLjCIyG8gP5OUC0vImRVmOtxdm6kmZ-W/view?usp=sharing">log</a></td>
+    <td><a href="https://pan.baidu.com/s/1yggLo79JJ825agUg0gxQ7Q">model</a></td>
+    <td><a href="https://drive.google.com/file/d/1-Yyi50Cmio-LyqegTJQ4RmuFD4u-M9ST/view?usp=sharing">config</a></td>    
+    <td><a href="https://drive.google.com/file/d/15k5QjnlDwtgoAq1AHIGMeXMA--nG4LVE/view?usp=sharing">log</a></td>
 </tr>
 <tr>
     <td>4th line in Table6</td>
